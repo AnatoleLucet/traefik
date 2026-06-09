@@ -3,7 +3,6 @@ package static
 import (
 	"fmt"
 	"math"
-	"net/http"
 	"strings"
 
 	ptypes "github.com/traefik/paerser/types"
@@ -78,7 +77,7 @@ type HTTPConfig struct {
 // SetDefaults sets the default values.
 func (c *HTTPConfig) SetDefaults() {
 	c.SanitizePath = ptr.To(true)
-	c.MaxHeaderBytes = http.DefaultMaxHeaderBytes
+	c.MaxHeaderBytes = 128 << 10 // 128 KiB
 }
 
 // EncodedCharacters configures which encoded characters are allowed in the request path.
